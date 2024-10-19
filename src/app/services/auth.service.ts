@@ -12,6 +12,8 @@ export class AuthService {
 
     this.supabase.auth.onAuthStateChange((event, session) => {
       console.log(event, session);
+
+      localStorage.setItem('session', JSON.stringify(session?.user))
     })
   }
 

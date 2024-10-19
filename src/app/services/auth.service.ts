@@ -9,5 +9,19 @@ export class AuthService {
   private supabase!: SupabaseClient
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
+
+    this.supabase.auth.onAuthStateChange((event, session) => {
+      console.log(event, session);
+    })
+  }
+
+  async signInWithGoogle() {
+    await this.supabase.auth.signInWithOAuth({
+      provider: 'google'
+    });
+  }
+
+  async signOut() {
+    await this.supabase.auth.signOut();
   }
 }

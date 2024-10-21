@@ -39,6 +39,7 @@ export class ChatComponent {
 
     this.chat_service.chatMessage(formValue).then((res) => {
       console.log(res)
+      this.chatForm.reset();
     }).catch((err) => {
       alert(err.message);
     })

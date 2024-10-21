@@ -31,4 +31,19 @@ export class ChatService {
       return null; // Return null if an exception
     }
   }
+
+  async listChat() {
+    try {
+      const { data, error } = await this.supabase.from('chat').select('*, users(*)');
+
+      if (error) {
+        alert(error.message);
+        return null; // Return null if there's an error during the insert
+      }
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
